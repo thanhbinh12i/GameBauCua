@@ -1,8 +1,9 @@
 import { Button, Typography } from "antd";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function DiemCuoc() {
-      const tongDiem =  useSelector(state => state.GameBauCuaReducer.tongDiem)
+      const tongDiem = useSelector(state => state.GameBauCuaReducer.tongDiem)
+      const dispatch = useDispatch();
       return (
             <>
                   <div>
@@ -18,7 +19,7 @@ function DiemCuoc() {
                               </Typography.Text>
                         </div>
                         <div style={{ textAlign: 'center', marginTop: '1rem' }}>
-                              <Button onClick={() => {}}
+                              <Button onClick={() => {dispatch({type: 'CHOI_LAI'}) }}
                                     style={{ fontSize: '15px', borderRadius: '5%', border: 'none' }}>
                                     Chơi lại
                               </Button>

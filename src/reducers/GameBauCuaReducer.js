@@ -46,15 +46,31 @@ const GameBauCuaReducer = (state = initialState, action) => {
                   state.mangXucXac = mangXucXacNgauNhien;
                   mangXucXacNgauNhien.forEach((item, index) => {
                         let indexDSCuoc = state.danhSachCuoc.findIndex(qc => qc.ma === item.ma);
-                        if(index !== -1){
+                        if (index !== -1) {
                               state.tongDiem += state.danhSachCuoc[indexDSCuoc].diemCuoc;
                         }
                   })
+                  state.danhSachCuoc.forEach((item, index) => {
+                        let indexXucXacNN = mangXucXacNgauNhien.findIndex(xxnn => xxnn.ma === item.ma);
+                        if (indexXucXacNN != -1) {
+                              state.tongDiem += item.diemCuoc;
+                        }
+                  })
+                  state.danhSachCuoc = state.danhSachCuoc.map((item, index) => {
+                        return { ...item, diemCuoc: 0 }
+                  })
                   return { ...state };
+            }
+            case 'CHOI_LAI': {
+                  state.tongDiem = 1000;
+                  state.danhSachCuoc = state.danhSachCuoc.map((item, index) => {
+                        return { ...item, diemCuoc: 0 }
+                  });
+                  return { ...state }
             }
 
             default:
-                  return state
+                  return state;
       }
 }
 export default GameBauCuaReducer;
